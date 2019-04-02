@@ -26,20 +26,4 @@ public class Fruit {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return date.format(formatter);
     }
-
-    public TypeFruit getTypeFruit() {
-        return typeFruit;
-    }
-
-    public int getShelfLife() {
-        return shelfLife;
-    }
-
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public int getPrice() {
-        return price;
-    }
 }

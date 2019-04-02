@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StockStore {
     private static final Logger LOGGER = Logger.getLogger(StockStore.class);
@@ -69,16 +68,6 @@ public class StockStore {
         }
     }
 
-    private LocalDate parseExpectedDate(Fruit fruit) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
-        return LocalDate.parse(fruit.getDeliveryDate(), formatter).plusDays(fruit.getShelfLife());
-    }
-
-    private LocalDate parseDate(Fruit fruit) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
-        return LocalDate.parse(fruit.getDeliveryDate(), formatter);
-    }
-
     public List<Fruit> getSpoiledFruits(LocalDate date) {
         return supplies.stream().filter(x -> parseExpectedDate(x).isBefore(date)).collect(Collectors.toList());
     }
@@ -108,5 +97,15 @@ public class StockStore {
         StringBuilder stringBuilder = new StringBuilder();
         supplies.forEach(x -> stringBuilder.append(x.toString()));
         return stringBuilder.toString();
+    }
+
+    private LocalDate parseExpectedDate(Fruit fruit) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
+        return LocalDate.parse(fruit.getDeliveryDate(), formatter).plusDays(fruit.getShelfLife());
+    }
+
+    private LocalDate parseDate(Fruit fruit) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
+        return LocalDate.parse(fruit.getDeliveryDate(), formatter);
     }
 }
