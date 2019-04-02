@@ -2,7 +2,6 @@ package com.store;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,9 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static com.store.StockStore.PATCH_TO_FILES;
-import static org.junit.Assert.*;
-
 
 public class StockStoreTest {
     private static final Logger LOGGER = Logger.getLogger(StockStoreTest.class);
