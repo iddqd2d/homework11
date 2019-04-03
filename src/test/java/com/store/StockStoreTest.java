@@ -24,11 +24,11 @@ public class StockStoreTest {
     @Before
     public void setUp() {
         mapper = new ObjectMapper();
+        clear();
     }
 
     @Test
-    public void addFruits() {
-        clear();
+    public void addInvoice() {
         StockStore flowersStore = new StockStore();
         List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
@@ -41,6 +41,28 @@ public class StockStoreTest {
             LOGGER.error(e.getMessage());
         }
         flowersStore.addInvoice();
+        assertFalse(flowersStore.getSupplies().isEmpty());
+        assertEquals(fruits, flowersStore.getSupplies());
+    }
+
+    @Test
+    public void addFruits() {
+        StockStore flowersStore = new StockStore();
+        List<Fruit> fruits = new ArrayList<>();
+        fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
+        fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
+        fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
+        try {
+            mapper.writeValue(new File(PATCH_TO_FILES + "test.txt"), fruits);
+
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        try {
+            flowersStore.addFruits(new File(PATCH_TO_FILES + "test.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         assertFalse(flowersStore.getSupplies().isEmpty());
         assertEquals(fruits, flowersStore.getSupplies());
     }
