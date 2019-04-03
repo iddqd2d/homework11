@@ -20,17 +20,19 @@ import static com.store.StockStore.PATCH_TO_FILES;
 public class StockStoreTest {
     private static final Logger LOGGER = Logger.getLogger(StockStoreTest.class);
     private ObjectMapper mapper;
+    private StockStore flowersStore;
+    private List<Fruit> fruits;
 
     @Before
     public void setUp() {
         mapper = new ObjectMapper();
+        flowersStore = new StockStore();
+        fruits = new ArrayList<>();
         clear();
     }
 
     @Test
     public void addInvoice() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
@@ -47,8 +49,6 @@ public class StockStoreTest {
 
     @Test
     public void addFruits() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
@@ -69,8 +69,6 @@ public class StockStoreTest {
 
     @Test
     public void save() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
@@ -89,7 +87,6 @@ public class StockStoreTest {
 
     @Test
     public void load() {
-        StockStore flowersStore = new StockStore();
         assertTrue(flowersStore.getSupplies().isEmpty());
         flowersStore.load(new File(PATCH_TO_FILES + "test.txt"));
         assertFalse(flowersStore.getSupplies().isEmpty());
@@ -97,8 +94,6 @@ public class StockStoreTest {
 
     @Test
     public void getSpoiledFruits() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
@@ -111,8 +106,6 @@ public class StockStoreTest {
 
     @Test
     public void getAvailableFruits() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
@@ -124,8 +117,6 @@ public class StockStoreTest {
 
     @Test
     public void getSpoiledFruits1() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
@@ -141,8 +132,6 @@ public class StockStoreTest {
 
     @Test
     public void getAvailableFruits1() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
@@ -156,8 +145,6 @@ public class StockStoreTest {
 
     @Test
     public void getAddedFruits() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
@@ -169,8 +156,6 @@ public class StockStoreTest {
 
     @Test
     public void getAddedFruits1() {
-        StockStore flowersStore = new StockStore();
-        List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit(TypeFruit.APPLE, 5, 1));
         fruits.add(new Fruit(TypeFruit.APRICOT, 10, 2));
         fruits.add(new Fruit(TypeFruit.PEACH, 15, 4));
